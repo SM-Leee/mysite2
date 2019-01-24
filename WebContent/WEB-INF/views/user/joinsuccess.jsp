@@ -13,9 +13,9 @@
 		<div id="content">
 			<div id="user">
 				<p class="jr-success">
-					íìê°ìì ì¶íí©ëë¤.
+					회원가입을 축하합니다.
 					<br><br>
-					<a href="<%=request.getContextPath() %>/user?a=loginform">ë¡ê·¸ì¸íê¸°</a>
+					<a href="<%=request.getContextPath() %>/user?a=loginform">로그인하기</a>
 				</p>				
 			</div>
 		</div>

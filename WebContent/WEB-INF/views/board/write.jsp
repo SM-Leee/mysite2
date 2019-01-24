@@ -16,22 +16,22 @@
 					<input type = "hidden" name = "a" value="write">
 					<table class="tbl-ex">
 						<tr>
-							<th colspan="2">ê¸ì°ê¸°</th>
+							<th colspan="2">글쓰기</th>
 						</tr>
 						<tr>
-							<td class="label">ì ëª©</td>
+							<td class="label">제목</td>
 							<td><input type="text" name="title" value=""></td>
 						</tr>
 						<tr>
-							<td class="label">ë´ì©</td>
+							<td class="label">내용</td>
 							<td>
 								<textarea id="content" name="content"></textarea>
 							</td>
 						</tr>
 					</table>
 					<div class="bottom">
-						<a href="/board">ì·¨ì</a>
-						<input type="submit" value="ë±ë¡">
+						<a href="/board">취소</a>
+						<input type="submit" value="등록">
 					</div>
 				</form>				
 			</div>
