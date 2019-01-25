@@ -12,25 +12,27 @@ import com.douzone.mvc.util.WebUtils;
 import com.douzone.mysite.repository.UserDao;
 import com.douzone.mysite.vo.UserVo;
 
-public class ModifyFormAction implements Action {
+public class ModifyAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		/* 접근제어 */
-		UserVo authUser = null;
+		String no_string = request.getParameter("no");
+		Long no = Long.parseLong(no_string);
+		String name = request.getParameter("name");
+		String gender = request.getParameter("gender");
+		
+		UserVo vo = new UserVo();
+		vo.setNo(no);
+		vo.setName(name);
+		vo.setGender(gender);
+		
+		UserVo authuser = new UserDao().update(vo);
+		
 		HttpSession session = request.getSession();
-		if(session != null) {
-			authUser = (UserVo)session.getAttribute("authuser");
-		}
-		if(authUser == null) {
-			WebUtils.redirect(request, response, request.getContextPath());
-			return;
-		}
+		session.setAttribute("authuser", authuser);
 		
-		UserVo vo = new UserDao().get(authUser.getNo());
-		request.setAttribute("vo",vo);
+		WebUtils.redirect(request, response, request.getContextPath());
 		
-		WebUtils.forward(request, response, "WEB-INF/views/user/modifyform.jsp");
 
 	}
 
