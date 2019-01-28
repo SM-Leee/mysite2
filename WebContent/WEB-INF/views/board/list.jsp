@@ -35,21 +35,20 @@
 						<tr>
 							<td>${count-status.index }</td>
 							<td style="padding-left:${30 *vo.depth } px">
-							<c:if
-									test="${vo.depth !=0 }">
+							<c:if test="${vo.depth !=0 }">
 									<img
 										src="${pageContext.servletContext.contextPath }/assets/images/reply.png">
 								</c:if> <a
-								href="${pageContext.servletContext.contextPath }/board?a=view&group_no=${vo.group_no }&order_no=${vo.order_no }&depth=${vo.depth }">${vo.title }</a></td>
+								href="${pageContext.servletContext.contextPath }/board?a=view&group_no=${vo.group_no }&order_no=${vo.order_no }&depth=${vo.depth }&user_no=${vo.user_no }">${vo.title }</a></td>
 
 							<td>${vo.user_name }</td>
 							<td>${vo.hit }</td>
 							<td>${vo.write_date }</td>
-							<c:if test="${authuser.no == vo.user_no}">
-								<td><a
-									href="${pageContext.servletContext.contextPath }/board?a=delete&no=${vo.no }"
-									class="del"> 삭제 </a></td>
-							</c:if>
+							<td><c:if test="${authuser.no == vo.user_no}">
+									<a
+										href="${pageContext.servletContext.contextPath }/board?a=delete&no=${vo.no }"
+										class="del"> 삭제 </a>
+								</c:if></td>
 						</tr>
 					</c:forEach>
 				</table>

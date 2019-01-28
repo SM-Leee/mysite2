@@ -35,10 +35,10 @@
 					</tr>
 				</table>
 				<div class="bottom">
-					<c:if test="${authuser != null }">
+					<a href="${pageContext.servletContext.contextPath }/board?a=select">글목록</a> 
+					<c:if test="${authuser != null && authuser.no != param.user_no }">
 						<a href="${pageContext.servletContext.contextPath }/board?a=replyView&group_no=${vo.group_no }&order_no=${vo.order_no }&depth=${vo.depth }&user_no=${authuser.no }&title=${vo.title }">댓글달기</a>
 					</c:if>
-					<a href="${pageContext.servletContext.contextPath }/board?a=select">글목록</a> 
 					<c:if test="${authuser.no == vo.user_no }">
 					<a href="">글수정</a>
 					</c:if>
