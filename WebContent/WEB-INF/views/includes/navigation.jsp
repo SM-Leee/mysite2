@@ -11,20 +11,27 @@
 					href="${pageContext.servletContext.contextPath }">이성민</a></li>
 				<li><a
 					href="${pageContext.servletContext.contextPath }/guestbook?a=list">방명록</a></li>
-				<li><a href="${pageContext.servletContext.contextPath }/board">게시판</a></li>
+				<li><a href="${pageContext.servletContext.contextPath }/board?a=list">게시판</a></li>
 			</c:when>
-			<c:when test='${param.menu == "board" }'>
+			<c:when test='${param.menu == "user" }'>
 				<li><a
 					href="${pageContext.servletContext.contextPath }">이성민</a></li>
 				<li class="selected"><a
 					href="${pageContext.servletContext.contextPath }/guestbook?a=list">방명록</a></li>
-				<li><a href="${pageContext.servletContext.contextPath }/board">게시판</a></li>
+				<li><a href="${pageContext.servletContext.contextPath }/board?a=list">게시판</a></li>
+			</c:when>
+			<c:when test='${param.menu == "board" }'>
+				<li><a
+					href="${pageContext.servletContext.contextPath }">이성민</a></li>
+				<li><a
+					href="${pageContext.servletContext.contextPath }/guestbook?a=list">방명록</a></li>
+				<li class="selected"><a href="${pageContext.servletContext.contextPath }/board?a=list&no=${authuser.no }">게시판</a></li>
 			</c:when>
 			<c:otherwise>
 				<li><a href="${pageContext.servletContext.contextPath }">이성민</a></li>
 				<li><a
 					href="${pageContext.servletContext.contextPath }/guestbook?a=list">방명록</a></li>
-				<li><a href="${pageContext.servletContext.contextPath }/board">게시판</a></li>
+				<li><a href="${pageContext.servletContext.contextPath }/board?a=list">게시판</a></li>
 			</c:otherwise>
 
 		</c:choose>

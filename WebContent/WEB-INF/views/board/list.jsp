@@ -30,34 +30,48 @@
 						<th>작성일</th>
 						<th>&nbsp;</th>
 					</tr>
-					<tr>
-						<td>3</td>
-						<td><a href="">세 번째 글입니다.</a></td>
-						<td>안대혁</td>
-						<td>3</td>
-						<td>2015-10-11 12:04:20</td>
-						<td><a href="" class="del">삭제</a></td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td><a href="">두 번째 글입니다.</a></td>
-						<td>안대혁</td>
-						<td>3</td>
-						<td>2015-10-02 12:04:12</td>
-						<td><a href="" class="del">삭제</a></td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td><a href="">첫 번째 글입니다.</a></td>
-						<td>안대혁</td>
-						<td>3</td>
-						<td>2015-09-25 07:24:32</td>
-						<td><a href="" class="del">삭제</a></td>
-					</tr>
+					<c:set var="count" value="${fn:length(list) }" />
+					<c:forEach items="${list }" var="vo" varStatus="status">
+						<tr>
+							<td>${count-status.index }</td>
+							<td style="padding-left:${50 *vo.depth} px"><c:if
+									test="${vo.depth !=0 }">
+									<img
+										src="${pageContext.servletContext.contextPath }/assets/images/reply.png">
+								</c:if> <a
+								href="${pageContext.servletContext.contextPath }/board?a=view&group_no=${vo.group_no }&order_no=${vo.order_no }&depth=${vo.depth }">${vo.title }</a></td>
+
+							<td>${vo.user_name }</td>
+							<td>${vo.hit }</td>
+							<td>${vo.write_date }</td>
+							<c:if test="${authuser.no == vo.user_no}">
+								<td><a
+									href="${pageContext.servletContext.contextPath }/board?a=delete&no=${vo.no }"
+									class="del"> 삭제 </a></td>
+							</c:if>
+						</tr>
+					</c:forEach>
 				</table>
-				<div class="bottom">
-					<a href="" id="new-book">글쓰기</a>
+				<!-- pager 추가 -->
+				<div class="pager">
+					<ul>
+						<li><a href="">◀</a></li>
+						<li><a href="">1</a></li>
+						<li class="selected">2</li>
+						<li><a href="">3</a></li>
+						<li>4</li>
+						<li>5</li>
+						<li><a href="">▶</a></li>
+					</ul>
 				</div>
+				<!-- pager 추가 -->
+				<c:if test="${authuser != null }">
+					<div class="bottom">
+						<a
+							href="${pageContext.servletContext.contextPath }/board?a=writeAdd&user_no=${authuser.no }"
+							id="new-book">글쓰기</a>
+					</div>
+				</c:if>
 			</div>
 		</div>
 		<c:import url="/WEB-INF/views/includes/navigation.jsp" />
