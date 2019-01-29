@@ -11,10 +11,9 @@ public class BoardVo {
 	private int order_no;
 	private int depth;
 	private Long user_no;
-	private String user_name;
 	private Long max_no;
-	private Long rownum;
-	private Long paging;
+	private String user_name;
+	private int count;
 	public Long getNo() {
 		return no;
 	}
@@ -69,36 +68,29 @@ public class BoardVo {
 	public void setUser_no(Long user_no) {
 		this.user_no = user_no;
 	}
-	public String getUser_name() {
-		return user_name;
-	}
-	public void setUser_name(String user_name) {
-		this.user_name = user_name;
-	}
 	public Long getMax_no() {
 		return max_no;
 	}
 	public void setMax_no(Long max_no) {
 		this.max_no = max_no;
 	}
-	public Long getRownum() {
-		return rownum;
+	public String getUser_name() {
+		return user_name;
 	}
-	public void setRownum(Long rownum) {
-		this.rownum = rownum;
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
 	}
-	public Long getPaging() {
-		return paging;
+	public int getCount() {
+		return count;
 	}
-	public void setPaging(Long paging) {
-		this.paging = paging;
+	public void setCount(int count) {
+		this.count = count;
 	}
 	@Override
 	public String toString() {
 		return "BoardVo [no=" + no + ", title=" + title + ", contents=" + contents + ", write_date=" + write_date
 				+ ", hit=" + hit + ", group_no=" + group_no + ", order_no=" + order_no + ", depth=" + depth
-				+ ", user_no=" + user_no + ", user_name=" + user_name + ", max_no=" + max_no + ", rownum=" + rownum
-				+ ", paging=" + paging + "]";
+				+ ", user_no=" + user_no + ", max_no=" + max_no + ", user_name=" + user_name + ", count=" + count + "]";
 	}
 	
 

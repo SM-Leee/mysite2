@@ -19,11 +19,30 @@ public class ListSelectAction implements Action {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		HttpSession session = request.getSession();
 		
-		BoardDao dao = new BoardDao();
-		List<BoardVo> list = dao.getList();
+		String page = request.getParameter("page");
+		page = (page==null)? "1" : page ;
+		int board_count = 5;
+		int size_page = 5;
+		
+		List<BoardVo> list = new BoardDao().getList(Integer.parseInt(page), board_count);
+		int count = new BoardDao().count();
+		
+		int start_page = 0;
+		int end_page = 0;
+		
+		int total_page = ((count-1)/board_count)+1;
+		
+		start_page = ((Integer.parseInt(page)-1)/size_page)*size_page+1;
+		end_page = start_page + size_page -1;
+		
 		
 		request.setAttribute("authuser", session.getAttribute("authuser"));
 		request.setAttribute("list", list);
+		request.setAttribute("page", page);
+		request.setAttribute("end_page", end_page);
+		request.setAttribute("start_page", start_page);
+		request.setAttribute("size_page", size_page);
+		request.setAttribute("total_page", total_page);
 		
 		WebUtils.forward(request, response, "/WEB-INF/views/board/list.jsp");
 

@@ -12,7 +12,7 @@ import com.douzone.mysite.vo.BoardVo;
 
 
 public class BoardDao {
-
+	
 	public boolean update(BoardVo boardVo) {
 		boolean result = false;
 		
@@ -233,7 +233,45 @@ public class BoardDao {
 		}
 		return boardVo;
 	}
-	public List<BoardVo> getList() {
+	
+	public int count() {
+		int count = 0;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = getConnection();
+			
+			String sql = "select count(*) from board";
+			pstmt = conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("Error : "+e);
+		} finally {
+			try {
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				if(rs != null) {
+					rs.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return count;
+	}
+	public List<BoardVo> getList(int page, int board_count) {
 		List<BoardVo> list = new ArrayList<BoardVo>();
 				
 		Connection conn = null;
@@ -242,11 +280,14 @@ public class BoardDao {
 		try {
 			conn = getConnection();
 			
-			String sql = "select c.* from(" + 
-					" select a.*,  @rownum := @rownum+1 as rownum, floor(((@rownum-1)/5)+1) as page from " + 
-					" (select a.no, a.title, a.contents, a.write_date, a.hit, a.group_no, a.order_no, a.depth,a.user_no ,b.name " + 
+			page = page - 1;
+			page = page * 5;
+			
+			String sql = "select a.* " + 
+					"	from (select a.no, a.title, a.contents, a.write_date, a.hit, a.group_no, a.order_no, a.depth,a.user_no ,b.name " + 
 					"			from board a, user b " + 
-					"				where a.user_no = b.no order by group_no desc, order_no asc) a, (select @rownum:=0) b) c where page =1";
+					"				where a.user_no = b.no order by group_no desc, order_no asc) a "+
+					"				limit "+page+", "+board_count;
 			//String sql ="select a.no, a.title, a.contents, a.write_date, a.hit, a.group_no, a.order_no, a.depth,a.user_no ,b.name from board a, user b where a.user_no = b.no order by group_no desc, order_no asc";
 //			sql = "select a.*"+
 //							" from (select a.no, a.title, a.contents, a.write_date, a.hit, a.group_no, a.order_no, a.depth,a.user_no ,b.name"+
@@ -268,8 +309,7 @@ public class BoardDao {
 				int depth = rs.getInt(8);
 				Long user_no = rs.getLong(9);
 				String user_name = rs.getString(10);
-				Long rownum = rs.getLong(11);
-				Long paging = rs.getLong(12);
+				
 				
 				
 				BoardVo vo = new BoardVo();
@@ -283,8 +323,6 @@ public class BoardDao {
 				vo.setDepth(depth);
 				vo.setUser_no(user_no);
 				vo.setUser_name(user_name);
-				vo.setRownum(rownum);
-				vo.setPaging(paging);
 				
 				list.add(vo);
 				
