@@ -28,6 +28,8 @@ public class BoardActionFactory extends AbstractActionFactory {
 			action = new ReplyAction();
 		} else if("modify".equals(actionName)) {
 			action = new ModifyAction();
+		} else if("modifyForm".equals(actionName)) {
+			action = new ModifyFormAction();
 		}
 		else {
 			action = new IndexAction();

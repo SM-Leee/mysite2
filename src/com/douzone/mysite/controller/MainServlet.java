@@ -11,12 +11,18 @@ import com.douzone.mvc.action.AbstractActionFactory;
 import com.douzone.mvc.action.Action;
 import com.douzone.mysite.action.main.MainActionFactory;
 
-@WebServlet("")
+//@WebServlet("")
 public class MainServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	@Override
+	public void init() throws ServletException {
+		String configPath = getServletConfig().getInitParameter("config");
+		System.out.println("init() caleled : "+configPath);
+	}
+
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
 		
 		String actionName = request.getParameter("a");
 
