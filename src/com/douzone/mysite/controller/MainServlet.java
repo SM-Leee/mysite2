@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.douzone.mvc.action.AbstractActionFactory;
 import com.douzone.mvc.action.Action;
-import com.douzone.mvc.util.WebUtils;
 import com.douzone.mysite.action.main.MainActionFactory;
 
 @WebServlet("")

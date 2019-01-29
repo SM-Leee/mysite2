@@ -13,6 +13,8 @@ public class BoardVo {
 	private Long user_no;
 	private String user_name;
 	private Long max_no;
+	private Long rownum;
+	private Long paging;
 	public Long getNo() {
 		return no;
 	}
@@ -79,16 +81,25 @@ public class BoardVo {
 	public void setMax_no(Long max_no) {
 		this.max_no = max_no;
 	}
+	public Long getRownum() {
+		return rownum;
+	}
+	public void setRownum(Long rownum) {
+		this.rownum = rownum;
+	}
+	public Long getPaging() {
+		return paging;
+	}
+	public void setPaging(Long paging) {
+		this.paging = paging;
+	}
 	@Override
 	public String toString() {
 		return "BoardVo [no=" + no + ", title=" + title + ", contents=" + contents + ", write_date=" + write_date
 				+ ", hit=" + hit + ", group_no=" + group_no + ", order_no=" + order_no + ", depth=" + depth
-				+ ", user_no=" + user_no + ", user_name=" + user_name + ", max_no=" + max_no + "]";
+				+ ", user_no=" + user_no + ", user_name=" + user_name + ", max_no=" + max_no + ", rownum=" + rownum
+				+ ", paging=" + paging + "]";
 	}
-	
-	
-	
-	
 	
 
 }

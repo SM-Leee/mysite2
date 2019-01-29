@@ -26,6 +26,8 @@ public class BoardActionFactory extends AbstractActionFactory {
 			action = new ReplyViewAction();
 		} else if("reply".equals(actionName)) {
 			action = new ReplyAction();
+		} else if("modify".equals(actionName)) {
+			action = new ModifyAction();
 		}
 		else {
 			action = new IndexAction();

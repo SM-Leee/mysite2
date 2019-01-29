@@ -34,7 +34,7 @@
 					<c:forEach items="${list }" var="vo" varStatus="status">
 						<tr>
 							<td>${count-status.index }</td>
-							<td style="padding-left:${30 *vo.depth } px">
+							<td style="padding-left:${25*vo.depth }px;">
 							<c:if test="${vo.depth !=0 }">
 									<img
 										src="${pageContext.servletContext.contextPath }/assets/images/reply.png">
@@ -56,14 +56,17 @@
 				<div class="pager">
 					<ul>
 						<li><a href="">◀</a></li>
-						<li><a href="">1</a></li>
+						
+						<li><a href="${pageContext.servletContext.contextPath }?board?a=">1</a></li>
 						<li class="selected">2</li>
 						<li><a href="">3</a></li>
 						<li>4</li>
 						<li>5</li>
+						
 						<li><a href="">▶</a></li>
 					</ul>
 				</div>
+				
 				<!-- pager 추가 -->
 				<c:if test="${authuser != null }">
 					<div class="bottom">
