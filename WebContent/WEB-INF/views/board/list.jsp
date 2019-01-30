@@ -18,7 +18,7 @@
 		<c:import url="/WEB-INF/views/includes/header.jsp" />
 		<div id="content">
 			<div id="board">
-				<form id="search_form" action="" method="post">
+				<form id="search_form" action="${pageContext.servletContext.contextPath }/board?a=searchselect" method="post">
 					<input type="text" id="kwd" name="kwd" value=""> <input
 						type="submit" value="찾기">
 				</form>
@@ -31,10 +31,9 @@
 						<th>작성일</th>
 						<th>&nbsp;</th>
 					</tr>
-					<c:set var="count" value="${fn:length(list) }" />
 					<c:forEach items="${list }" var="vo" varStatus="status">
 						<tr>
-							<td>${count-status.index }</td>
+							<td>${count-((page-1)*board_count)-status.index }</td>
 							<td style="padding-left:${25*vo.depth }px;">
 							<c:if test="${vo.depth !=0 }">
 									<img
@@ -55,6 +54,8 @@
 				</table>
 				
 				<!-- pager 추가 -->
+				<c:if test="${kwd == null }">
+				
 				<div class="pager">
 					<ul>
 					<c:choose>
@@ -62,7 +63,7 @@
 							<li>◀</li>
 						</c:when>
 						<c:when test="${start_page!=1 }">
-							<li><a href="${pageContext.servletContext.contextPath }/board?a=select&page=${start_page-5 }">◀</a></li>
+							<li><a href="${pageContext.servletContext.contextPath }/board?a=select&page=${start_page-size_page }">◀</a></li>
 						</c:when>								
 					</c:choose>
 					<c:forEach var="i" begin="${start_page }" end="${end_page }" step="1">
@@ -80,7 +81,7 @@
 						</c:forEach>
 						<c:choose>
 						<c:when test="${end_page<total_page && size_page<total_page }">
-							<li><a href="${pageContext.servletContext.contextPath }/board?a=select&page=${start_page+5 }">▶</a></li>
+							<li><a href="${pageContext.servletContext.contextPath }/board?a=select&page=${start_page+size_page }">▶</a></li>
 						</c:when>	
 						<c:otherwise>
 							<li>▶</li>
@@ -88,7 +89,42 @@
 					</c:choose>
 					</ul>
 				</div>
-				
+				</c:if>
+				<c:if test="${kwd != null }">
+					<div class="pager">
+					<ul>
+					<c:choose>
+						<c:when test="${start_page==1 }">
+							<li>◀</li>
+						</c:when>
+						<c:when test="${start_page!=1 }">
+							<li><a href="${pageContext.servletContext.contextPath }/board?a=searchselect&page=${start_page-size_page }&kwd=${kwd }">◀</a></li>
+						</c:when>								
+					</c:choose>
+					<c:forEach var="i" begin="${start_page }" end="${end_page }" step="1">
+						<c:choose>
+							<c:when test="${page == i }">
+							<li class="selected"><a href="${pageContext.servletContext.contextPath }/board?a=searchselect&page=${i }&kwd=${kwd }">${i }</a></li>
+							</c:when>
+							<c:when test="${(page != i) and (total_page>=i) }">
+								<li><a href="${pageContext.servletContext.contextPath }/board?a=searchselect&page=${i }&kwd=${kwd }">${i }</a></li>
+							</c:when>
+							<c:otherwise>
+								<li>${i }</li>
+							</c:otherwise>
+						</c:choose>
+						</c:forEach>
+						<c:choose>
+						<c:when test="${end_page<total_page && size_page<total_page }">
+							<li><a href="${pageContext.servletContext.contextPath }/board?a=searchselect&page=${start_page+size_page }&kwd=${kwd }">▶</a></li>
+						</c:when>	
+						<c:otherwise>
+							<li>▶</li>
+						</c:otherwise>							
+					</c:choose>
+					</ul>
+				</div>
+				</c:if>
 				<!-- pager 추가 -->
 				
 				

@@ -30,6 +30,12 @@ public class BoardActionFactory extends AbstractActionFactory {
 			action = new ModifyAction();
 		} else if("modifyForm".equals(actionName)) {
 			action = new ModifyFormAction();
+		} else if("searchselect".equals(actionName)) {
+			action = new SearchSelect();
+		} else if("deletecomment".equals(actionName)) {
+			action = new DeleteCommentAction();
+		} else if(("insertcomment").equals(actionName)) {
+			action = new InsertCommentAction();
 		}
 		else {
 			action = new IndexAction();
