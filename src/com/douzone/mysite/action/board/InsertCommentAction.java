@@ -20,7 +20,7 @@ public class InsertCommentAction implements Action {
 		String contents = request.getParameter("contents");
 		
 		CommentVo vo = new CommentVo();
-		vo.setGroup_no(group_no);
+		vo.setGroup_no(group_no); 
 		vo.setOrder_no(order_no);
 		vo.setComment(contents);
 		
