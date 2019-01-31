@@ -235,11 +235,11 @@ public class BoardDao {
 			}
 			pstmt.close();
 			
-			sql ="insert into comment values(null,?, ?)";
+			sql ="insert into comment values(null, ?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setString(1, commentVo.getComment());
-			pstmt.setLong(2, commentVo.getBoard_no());
+			pstmt.setLong(1, commentVo.getUser_no());
+			pstmt.setString(2, commentVo.getComment());
+			pstmt.setLong(3, commentVo.getBoard_no());
 						
 			int count = pstmt.executeUpdate();
 			
@@ -272,10 +272,11 @@ public class BoardDao {
 			conn = getConnection();
 			
 			
-			String sql = "select b.user_no ,c.name, a.comment, a.no    " + 
-					"	from comment a, board b, user c where a.board_no=b.no and b.user_no = c.no     " + 
-					"		and b.group_no = "+group_no+" and order_no= +"+order_no+"    " + 
-					"		order by a.no asc";
+			String sql = "select a.user_no, c.name, a.comment, a.no  " + 
+					"		from comment a, board b, user c    " + 
+					"			where a.board_no=b.no and a.user_no=c.no   " + 
+					"			and b.group_no = "+ group_no+" and order_no = "+order_no+ 
+					"			order by a.no asc";
 
 			pstmt = conn.prepareStatement(sql);
 			

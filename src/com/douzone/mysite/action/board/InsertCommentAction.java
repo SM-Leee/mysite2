@@ -18,8 +18,10 @@ public class InsertCommentAction implements Action {
 		int group_no = Integer.parseInt(request.getParameter("group_no"));
 		int order_no = Integer.parseInt(request.getParameter("order_no"));
 		String contents = request.getParameter("contents");
+		Long user_no = Long.parseLong(request.getParameter("user_no"));
 		
 		CommentVo vo = new CommentVo();
+		vo.setUser_no(user_no);
 		vo.setGroup_no(group_no); 
 		vo.setOrder_no(order_no);
 		vo.setComment(contents);

@@ -38,7 +38,7 @@
 				</table>
 				<div class="bottom">
 					<a href="${pageContext.servletContext.contextPath }/board?a=select">글목록</a>
-					<c:if test="${authuser != null && authuser.no != param.user_no }">
+					<c:if test="${authuser != null}">
 						<a
 							href="${pageContext.servletContext.contextPath }/board?a=replyView&group_no=${vo.group_no }&order_no=${vo.order_no }&depth=${vo.depth }&user_no=${authuser.no }&title=${vo.title }">답글달기</a>
 					</c:if>
@@ -62,7 +62,7 @@
 					</c:forEach>
 				</table>
 				<c:if test="${authuser != null }">
-				<form class="board-form" method="post" action="${pageContext.servletContext.contextPath }/board?a=insertcomment">
+				<form class="board-form" method="post" action="${pageContext.servletContext.contextPath }/board?a=insertcomment&user_no=${authuser.no }">
 					<input type="hidden" name="a" value="insertcomment">
 					<input type="hidden" name="group_no" value="${param.group_no }">
 					<input type="hidden" name="order_no" value="${param.order_no }">
