@@ -37,8 +37,8 @@
 					</tr>
 				</table>
 				<div class="bottom">
-					<a href="${pageContext.servletContext.contextPath }/board?a=select&page=${page }">글목록</a>
-					<c:if test="${authuser != null}">
+					<a href="${pageContext.servletContext.contextPath }/board?a=select">글목록</a>
+					<c:if test="${authuser != null && vo.user_no != authuser.no }">
 						<a
 							href="${pageContext.servletContext.contextPath }/board?a=replyView&group_no=${vo.group_no }&order_no=${vo.order_no }&depth=${param.depth }&user_no=${authuser.no }&title=${vo.title }&page=${page }">답글달기</a>
 					</c:if>
