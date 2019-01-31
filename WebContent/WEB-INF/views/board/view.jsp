@@ -37,14 +37,14 @@
 					</tr>
 				</table>
 				<div class="bottom">
-					<a href="${pageContext.servletContext.contextPath }/board?a=select">글목록</a>
+					<a href="${pageContext.servletContext.contextPath }/board?a=select&page=${page }">글목록</a>
 					<c:if test="${authuser != null}">
 						<a
-							href="${pageContext.servletContext.contextPath }/board?a=replyView&group_no=${vo.group_no }&order_no=${vo.order_no }&depth=${vo.depth }&user_no=${authuser.no }&title=${vo.title }">답글달기</a>
+							href="${pageContext.servletContext.contextPath }/board?a=replyView&group_no=${vo.group_no }&order_no=${vo.order_no }&depth=${param.depth }&user_no=${authuser.no }&title=${vo.title }&page=${page }">답글달기</a>
 					</c:if>
 					<c:if test="${authuser.no == vo.user_no }">
 						<a
-							href="${pageContext.servletContext.contextPath }/board?a=modify&title=${vo.title }&contents=${vo.contents }&no=${vo.no }">글수정</a>
+							href="${pageContext.servletContext.contextPath }/board?a=modify&title=${vo.title }&contents=${vo.contents }&no=${vo.no }&page=${page }">글수정</a>
 					</c:if>
 				</div>
 

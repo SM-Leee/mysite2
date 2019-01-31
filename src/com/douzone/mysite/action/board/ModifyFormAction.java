@@ -20,6 +20,7 @@ public class ModifyFormAction implements Action {
 		String contents = request.getParameter("content");
 		Long no = Long.parseLong(request.getParameter("no"));
 		
+		
 		BoardVo vo = new BoardVo();
 		vo.setTitle(title);
 		vo.setContents(contents);

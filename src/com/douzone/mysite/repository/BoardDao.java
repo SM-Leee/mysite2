@@ -458,7 +458,7 @@ public class BoardDao {
 			conn = getConnection();
 			
 			page = page - 1;
-			page = page * 5;
+			page = page * board_count;
 			
 			String sql = "select a.no, a.title, a.contents, a.write_date, a.hit, a.group_no, a.order_no, a.depth,a.user_no ,b.name " + 
 					"			from board a, user b " + 
@@ -529,7 +529,7 @@ public class BoardDao {
 			conn = getConnection();
 			
 			page = page - 1;
-			page = page * 5;
+			page = page * board_count;
 			
 			String sql = "select a.no, a.title, a.contents, a.write_date, a.hit, a.group_no, a.order_no, a.depth,a.user_no ,b.name  " + 
 					"			from board a, user b   " + 

@@ -22,14 +22,14 @@ public class ListSelectAction implements Action {
 		String page = request.getParameter("page");
 		page = (page==null)? "1" : page ;
 		//화면에 띄우 게시글 수
-		int board_count = 5;
+		int board_count = 10;
 		//화면에 보여줄 페이지
 		int size_page = 5;
 		
 		List<BoardVo> list = new BoardDao().getList(Integer.parseInt(page), board_count);
 		//게시물 총갯수
 		int count = new BoardDao().count();
-		
+	
 		int start_page = 0;
 		int end_page = 0;
 		//총 페이지
@@ -39,7 +39,6 @@ public class ListSelectAction implements Action {
 		//끝페이지
 		end_page = start_page + size_page -1;
 		System.out.println(count);
-		System.out.println(page);
 		
 		request.setAttribute("authuser", session.getAttribute("authuser"));
 		request.setAttribute("list", list);

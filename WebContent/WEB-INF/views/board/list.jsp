@@ -34,12 +34,12 @@
 					<c:forEach items="${list }" var="vo" varStatus="status">
 						<tr>
 							<td>${count-((page-1)*board_count)-status.index }</td>
-							<td style="padding-left:${30*vo.depth }px;">
+							<td style="padding-left:${15*vo.depth }px;">
 							<c:if test="${vo.depth !=0 }">
 									<img
 										src="${pageContext.servletContext.contextPath }/assets/images/reply.png">
 								</c:if> <a
-								href="${pageContext.servletContext.contextPath }/board?a=view&group_no=${vo.group_no }&order_no=${vo.order_no }&depth=${vo.depth }&user_no=${vo.user_no }">${vo.title }</a></td>
+								href="${pageContext.servletContext.contextPath }/board?a=view&group_no=${vo.group_no }&order_no=${vo.order_no }&depth=${vo.depth }&user_no=${vo.user_no }&page=${page }">${vo.title }</a></td>
 
 							<td>${vo.user_name }</td>
 							<td>${vo.hit }</td>
@@ -137,7 +137,9 @@
 				</c:if>
 			</div>
 		</div>
-		<c:import url="/WEB-INF/views/includes/navigation.jsp" />
+		<c:import url="/WEB-INF/views/includes/navigation.jsp" >
+			<c:param name="menu" value="board"/>
+		</c:import>
 		<c:import url="/WEB-INF/views/includes/footer.jsp" />
 	</div>
 </body>

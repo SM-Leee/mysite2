@@ -23,7 +23,6 @@ public class ViewAction implements Action {
 		int group_no = Integer.parseInt(request.getParameter("group_no"));
 		int order_no = Integer.parseInt(request.getParameter("order_no"));
 		
-		
 		BoardVo vo = new BoardDao().get(group_no, order_no);
 		vo.setGroup_no(group_no);
 		vo.setOrder_no(order_no);

@@ -22,7 +22,7 @@ public class SearchSelect implements Action {
 		String kwd = request.getParameter("kwd");
 		String page = request.getParameter("page");
 		page = (page==null)? "1" : page ;
-		int board_count = 5;
+		int board_count = 10;
 		int size_page = 5;
 		
 		List<BoardVo> list = new BoardDao().getList(Integer.parseInt(page), board_count, kwd);
@@ -45,6 +45,9 @@ public class SearchSelect implements Action {
 		request.setAttribute("size_page", size_page);
 		request.setAttribute("total_page", total_page);
 		request.setAttribute("kwd",	kwd);
+		request.setAttribute("total_page", total_page);
+		request.setAttribute("count", count);
+		request.setAttribute("board_count", board_count);
 		
 		WebUtils.forward(request, response, "/WEB-INF/views/board/list.jsp");
 
