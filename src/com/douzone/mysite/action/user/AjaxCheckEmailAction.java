@@ -12,19 +12,18 @@ import javax.servlet.http.HttpServletResponse;
 import com.douzone.mvc.action.Action;
 import com.douzone.mysite.repository.UserDao;
 import com.douzone.mysite.vo.UserVo;
-
 import net.sf.json.JSONObject;
 
 public class AjaxCheckEmailAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		//email 중복확인 
+		//회원가입 email 중복확인 
 		
 		String email = request.getParameter("email");
 		
 		UserDao dao = new UserDao();
-		UserVo vo = null; //dao.checkEmail(email);
+		UserVo vo = dao.get(email);
 
 		boolean bExist = vo != null ;
 		
