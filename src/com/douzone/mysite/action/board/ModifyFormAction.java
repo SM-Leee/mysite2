@@ -17,7 +17,7 @@ public class ModifyFormAction implements Action {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		
 		String title = request.getParameter("title");
-		String contents = request.getParameter("content");
+		String contents = request.getParameter("contents");
 		Long no = Long.parseLong(request.getParameter("no"));
 		
 		
